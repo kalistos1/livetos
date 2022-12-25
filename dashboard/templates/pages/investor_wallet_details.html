@@ -1,0 +1,43 @@
+
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+   <div class="content-wrapper">
+  <div class="content">
+<!-- Card with Deck -->
+<div class="card card-default">
+  <div class="card-header">
+    <h2>Your Crypto Wallet Address Information </h2>
+    </div>
+  <div class="card-body">
+    
+
+    <div class="card-deck">
+    {% if user %}
+
+      <div class="card">
+        {% comment %} <img class="card-img-top thumbnail"  src="{{wallet.qr_image.url}}" alt="Card image cap"> {% endcomment %}
+        <div class="card-body">
+          <p > UserName: <h5 class="card-title ">{{user.username}} </h5> </p>
+          <p >  Wallet  Address : <h5 class="card-title "> {% if user.profile.crypto_address %} {{user.profile.crypto_address}} {% else %} you have not added a Crypto wallet address {% endif %}</h5> </p>
+          <p class="card-text pb-3">
+          
+          </p>
+
+          <div >
+          <a class="btn btn-info btn-block shadow" href="{% url 'authentication:edit_profile' %}"> Edit/Add Address</a>
+          </div>
+        </div>
+      </div>
+    
+       {% endif %}
+  </div>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+

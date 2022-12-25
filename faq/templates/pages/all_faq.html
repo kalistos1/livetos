@@ -1,0 +1,57 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+   <div class="content-wrapper">
+  <div class="content">
+<!-- Card with Deck -->
+<div class="card card-default">
+  <div class="card-header">
+    <h2>Manage All Frequently Asked Questions  </h2>
+    <h2> <a class="btn btn-primary" href="{% url 'faq:create_faq' %}"> add new faq</a></h2>
+    </div>
+  <div class="card-body">
+
+  <div class="row">
+   {% if faq %}
+    {% for faq in faq %}
+
+  <div class="col-md-6 col-xl-4">
+    <div class="card py-3 mb-4">
+      <div class="card-body">
+        <h5 class="card-title ">{{faq.title }}</h5>
+        <h6 class="card-text pb-4 pt-1">
+        {{faq.question}}
+        </h6>
+
+        <p class="card-text pb-4 pt-1">
+         {{faq.answer}}
+        </p>
+
+        
+        <div class="card-footer">
+         <div clss="mt-3" >
+          <a class="btn btn-primary  shadow" href="{% url 'faq:update_faq' faq.id %}"> Edit</a>
+           <a class="btn btn-danger  shadow" href="{% url 'faq:delete_faq' faq.id %}"> Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   {% endfor %}
+    {% endif %}
+
+  </div>
+
+   
+      
+
+  </div>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,40 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+<div class="content">
+
+
+<div class="card card-default">
+  <div class="card-header">
+    <h2>All Sent Messages/Mail</h2>
+  </div>
+  <div class="card-body">
+  
+  
+   <div class="card-deck">
+    {% if all_sent_messages %}
+	 <div class="row" >
+    {% for message in all_sent_messages %}
+      
+	   <div class="col-md-6 col-xl-4">
+		<div class="card mb-4 py-3">
+		  <div class="card-body text-center">
+			<h5 class="card-title ">{{message.subject}}</h5>
+			<p class="card-text pb-4 pt-1">
+            {{message.body}}
+			</p>
+			<a href="#" class="btn btn-link text-success px-0">sent on {{message.date_created}}</a>
+		  </div>
+		</div>
+	  </div>
+      {% endfor %}
+	  </div>
+       {% endif %}
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

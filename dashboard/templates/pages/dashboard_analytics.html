@@ -1,0 +1,313 @@
+        {% extends 'dashboard_base.html' %}
+        {% load static %}
+        {% block content %}
+
+        <!-- ====================================
+        ——— CONTENT WRAPPER
+        ===================================== -->
+        <div class="content-wrapper">
+          <div class="content">                
+                  <!-- Top Statistics -->
+                  {% if request.user.is_authenticated and request.user.is_admin %}
+                  <div class="row">
+                    <div class="col-xl-3 col-sm-6 col-6">
+                      <div class="card card-default">
+                        <div class="card-header">
+                          <h2>{{total_users}}</h2>
+                          <div class="sub-title">
+                            <span class="mr-1">Total Number of User</span> |
+    
+                             <a href="" class="btn btn-sm btn-secondary"> all users</a>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-6">
+                      <div class="card card-default">
+                        <div class="card-header">
+                          <!--<h2>{{membership_types.count}}</h2>-->
+                      
+                          <div class="sub-title">
+                            <span class="mr-1"> Subscription packages</span> 
+                              <a href="" class="btn btn-sm btn-secondary"> all Packages</a>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-6">
+                      <div class="card card-default">
+                        <div class="card-header">
+                         <!--  <h2>${{total_amount_received}}</h2> -->
+                          
+                          <div class="sub-title">
+                            <span class="mr-1">Total generated income</span> |
+                            <i class="mdi mdi-arrow-down-bold text-danger"></i>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-6">
+                      <div class="card card-default">
+                        <div class="card-header">
+                          <!-- <h2>${{total_amount_paid_out}}</h2>-->
+                          
+                          <div class="sub-title">
+                            <span class="mr-1">Total Payouts</span> |
+                            <i class="mdi mdi-arrow-up-bold text-success"></i>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+				  
+				  <div class="row">
+				  	<div class="col-xl- col-sm-7 col-12">
+						<!-- User Acquisition Statistics -->
+						<div class="card card-default" id="user-acquisition">
+						  <div class="card-header border-bottom pb-0">
+							<h2>User Acquisition</h2>
+							<ul class="nav nav-underline-active-primary" role="tablist">
+							  <li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#traffic-channel" role="tab" aria-selected="true">Traffic
+								  Channel</a>
+							  </li>
+							  <li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#source-medium" role="tab" aria-selected="false">Source / Medium </a>
+							  </li>
+							  <li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#referrals" role="tab" aria-selected="false">Referrals</a>
+							  </li>
+							</ul>
+						  </div>
+
+						  <div class="tab-content" id="myTabContent">
+							<div id="barchartlg1"></div>
+						  </div>
+						  <div class="card-footer d-flex flex-wrap bg-white">
+							<a href="#" class="text-uppercase py-3">User Traffic Report</a>
+						  </div>
+						</div>
+					</div>
+				    <div class="col-xl-5 col-sm-5 col-12">
+														
+						<div class="card card-default">
+							<div class="card-header">
+							    <h2>income/payout chart</h2>
+							</div>
+							<div class="card-body p-xl-7">
+								<div id="simple-pie-chart" class="d-flex justify-content-center"></div>
+							 </div>
+						</div>
+				    </div>
+
+				  </div>
+
+                   <div class="row ">
+                    
+                    
+                    <div class="col-xl-4 col-sm-6 col-6">
+                      <div class="card card-default shadow">
+                        <div class="bg-success card-header">
+                          <h2>{{total_tickets}}</h2>
+                       
+                          <div class="sub-title">
+                            <span class="mr-1"> All Tickets</span>
+							<br>
+							<br>
+							 <a href="" class="btn btn-sm btn-light"> View tickets</a>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-6 col-6">
+                      <div class="bg-warning card card-default shadow ">
+                        <div class="card-header ">
+                          <h2>{{total_messages}}</h2>
+                          <div class="sub-title">
+                            <span class="mr-1">Total Inquiry Messages</span> 
+							<br>
+							<br>
+							<a href="" class="btn btn-sm btn-light"> View messages</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					
+                    <div class="col-xl-4 col-sm-6 col-6">
+                      <div class="card card-default shadow">
+                        <div class=" bg-danger card-header">
+                           <!--<h2>{{approved_withdrawal_approved}}</h2>-->
+                          <div class="sub-title">
+                            <span class="mr-1">No. Of Approved withdrawals</span> |
+							<br>
+							<br>
+							<a href="" class="btn btn-sm btn-info"> all withdrawals</a>                        
+                          </div>
+                        </div>                       
+                      </div>
+                    </div>
+             
+
+                
+                    
+                    <div class="col-xl-4 col-sm-6  col-6">
+                      <div class="card card-default shadow ">
+                        <div class="card-header bg-info ">
+                           <!--<h2 style="color:#ffffff;">{{approved_withdrawal_declined}}</h2>-->
+                         
+                          <div class="sub-title">
+                            <span class="mr-1" style="color:#ffffff;">No.Declined withdrawals</span> |
+                          </div>
+                        </div>
+                       
+                      </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6 col-6">
+                      <div class="card card-default shadow ">
+                        <div class="card-header bg-primary">
+                           <!--<h2 style="color:#ffffff;">{{approved_withdrawal_pending}}</h2>-->
+                          
+                          <div class="sub-title">
+                            <span class="mr-1" style="color:#ffffff;"> Pending Withdrawals</span> |
+                          </div>
+                        </div>                     
+                      </div>
+                    </div>
+
+                   
+                    <div class="col-xl-4 col-sm-6 col-6">
+                      <div class="card card-default shadow">
+                        <div class="card-header bg-secondary">
+                          <!-- <h2 style="color:#ffffff;">{{total_messages}}</h2> -->
+                          
+                          <div class="sub-title">
+                            <span class="mr-1" style="color:#ffffff;">Total Pending investment Upgrade</span> |
+                         
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 {% else %}
+
+
+
+                <div class="row">
+                  {% if request.user %}
+                    <div class="col-xl-12">
+                       <div class="card card-default">
+                         
+                          <div class="card-header align-items-center">
+                            <h4 class="">Investment Summary<span class="text-danger"> <a href="{% url 'dashboard:profile'%}"> {{user.username }} </a></span><h2>
+                            
+                          </div>
+
+                          <div class="card-body">
+                            <div>
+                             <h5 class="">Referal Code :<span class="text-danger"><code>{{ referral_code }} </code></span><h5>
+                              <h5 class="">Referal link :<small class="text-info"> https://livetos.com/user/referal/{{ referral_code }} </small><h5>
+                            </div>
+                            
+                          </div>
+                    </div>
+                  {% endif %}
+                </div>
+
+
+                 <div class="row">
+				 <div class="col-xl-3 col-sm-6">
+                      <div class="card card-default card-mini">
+                        <div class="card-header">
+                          <h3>{{request.user.membership.membership}}</h3>
+                          
+                          <div class="sub-title">
+                            <span class="mr-1"> Current Investment Plan </span> 
+                            <a href="" class="btn btn-primary align-self-center"> Upgrade</a>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart-wrapper">
+                            <div>
+                              <div id="spline-area-2"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>  
+					
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-default card-mini">
+                        <div class="card-header">
+                          <h2>${{request.user.membership.investment_amount}}</h2>
+                          
+                          <div class="sub-title">
+                            <span class="mr-1">Amount Invested</span> 
+                          
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart-wrapper">
+                            <div>
+                              <div id="spline-area-3"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					 <div class="col-xl-3 col-sm-6">
+                      <div class="card card-default card-mini">
+                        <div class="card-header">
+                          <h2>${{total_invest_accural}}</h2>
+                          
+                          <div class="sub-title">
+                            <span class="mr-1"> Profit </span> 
+							<br>
+							<a href class="btn btn-secondary"> withdraw</a> 
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart-wrapper">
+                            <div>
+                              <div id="spline-area-4"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					
+					
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-default card-mini">
+                        <div class="card-header">
+                          <h2>${{total_bonus}}</h2>
+              
+                          <div class="sub-title">
+                            <span class="mr-1">Referal Bonus</span> 
+    
+                             <a href="" class="btn btn-info"> Withdraw</a> 
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart-wrapper">
+                            <div>
+                              <div id="spline-area-1"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                  </div>
+
+           {% endif %}
+            </div>
+        </div>
+     
+         {% endblock %}
+                    

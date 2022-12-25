@@ -1,0 +1,70 @@
+        {% extends 'dashboard_base.html' %}
+        {% load static %}
+        {% block content %}
+
+        <!-- ====================================
+        ——— CONTENT WRAPPER
+        ===================================== -->
+        <div class="content-wrapper">
+          <div class="content">
+          <div class="card card-default">
+  <div class="card-header">
+    <h2>Add Admin User</h2>
+  </div>
+  <div class="card-body">
+  
+    <div class="row justify-content-center">
+     
+      <div class="col-md-8">
+       
+            
+              <form method ="POST">
+               {% include 'partials/_messages.html' %}
+               {% csrf_token %}
+                 <div class="form-group  mb-4">
+                    {{form.first_name}} 
+                  </div>
+
+                   <div class="form-group  mb-4">
+                    {{form.last_name}} 
+                  </div>
+
+                   <div class="form-group  mb-4">
+                    {{form.username}} 
+                  </div>
+
+                   <div class="form-group  mb-4">
+                    {{form.email}} 
+                  </div>
+
+                   <div class="form-group  mb-4">
+                    {{form.password}} 
+                  </div>
+
+                   <div class="form-group  mb-4">
+                    <p class="form-group  mb-4">
+                     Make Admin
+                    {{form.is_admin}} 
+                     <p>
+                  </div>
+
+                  <div class="form-group  mb-4">
+                    {{form.account_status}} 
+                  </div>
+                  <div class="form-group  mb-4">
+                    <button class="btn btn-block btn-primary" type ="submit"> submit </button>
+                  </div>
+              </form>
+
+          </div>
+        </div>
+      </div>
+      
+ 
+</div>
+
+          </div>
+        </div>
+     
+         {% endblock %}
+                    

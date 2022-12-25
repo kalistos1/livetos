@@ -1,0 +1,256 @@
+          {% load static %}
+         <aside class="left-sidebar sidebar-dark" id="left-sidebar">
+           <div id="sidebar" class="sidebar sidebar-with-footer">
+            <!-- Aplication Brand -->
+            <div class="app-brand">
+              <a href="#">
+                <img class="img-fluid" style="height:65px" src="{% static 'assets/img/livetos_logo_light.png' %}" alt="livetos">
+                <span class="brand-name">livetos</span>
+              </a>
+            </div>
+            <!-- begin sidebar scrollbar -->
+            <div class="sidebar-left" data-simplebar style="height: 100%;">
+              <!-- sidebar menu -->
+              <ul class="nav sidebar-inner" id="sidebar-menu">
+                
+
+                
+                  <li class="active" >
+                    <a class="sidenav-item-link" href="{% url 'dashboard:analytics' request.user.username %}">
+                      <i class="mdi mdi-briefcase-account-outline"></i>
+                      <span class="nav-text">Analytics</span>
+                    </a>
+                  </li>
+                  <li >
+                      <a class="sidenav-item-link" href="{% url 'dashboard:profile' request.user.username %}">
+                        <i class="mdi mdi-account-circle fs-6 mr-2"></i>
+                          <span class="nav-text">My Profile</span>
+                       </a>
+                     </li>
+
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email"
+                      aria-expanded="false" aria-controls="email">
+                      <i class="mdi mdi-account"></i>
+                      <span class="nav-text">Manage User</span> <b class="caret"></b>
+                    </a>
+
+                    <ul  class="collapse"  id="email"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+  
+                            <li >
+                             {% comment %} <a class="sidenav-item-link" href="{% url 'dashboard:all_users' %}">{% endcomment %}
+                                 <i class="mdi mdi-account-multiple-plus mr-2"></i>
+                                <span class="nav-text">All Users</span>
+                                
+                              </a>
+                            </li>
+
+
+                            <li >
+                            {% comment %}  <a class="sidenav-item-link" href="{% url 'dashboard:add_admin' %}">{% endcomment %}
+                             <i class="mdi mdi-account-circle fs-6 mr-2"></i>
+                                <span class="nav-text">Add Admin Staff</span>
+                              </a>
+                            </li>
+
+                      </div>
+                    </ul>
+                  </li>
+
+                  
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#faq"
+                      aria-expanded="false" aria-controls="email">
+                      <i class="mdi mdi-account"></i>
+                      <span class="nav-text">Manage Faq</span> <b class="caret"></b>
+                    </a>
+
+                    <ul  class="collapse"  id="faq"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+  
+                            <li >
+                            <a class="sidenav-item-link" href="{% url 'faq:all_faq' %}">
+                                 <i class="mdi mdi-account-multiple-plus mr-2"></i>
+                                <span class="nav-text">All Faq</span>
+                                
+                              </a>
+                            </li>
+
+
+                            <li >
+                              <a class="sidenav-item-link" href="{% url 'faq:create_faq' %}">
+                             <i class="mdi mdi-account-circle fs-6 mr-2"></i>
+                                <span class="nav-text">Add Faq</span>
+                              </a>
+                            </li>
+                      </div>
+                    </ul>
+                  </li>
+
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#users"
+                      aria-expanded="false" aria-controls="users">
+                      <i class="mdi mdi-bitcoin"></i>
+                      <span class="nav-text">Manage Investments </span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="users"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+					        <li>
+                             {% comment %} <a class="sidenav-item-link" href="{% url 'investments:investment_plans' %}">{% endcomment %}
+                              <i class="mdi mdi-cash-register mr-2"></i>
+                                <span class="nav-text">investment Plans</span>
+                              </a>
+                            </li>
+					  
+                           <li >
+                             {% comment %} <a class="sidenav-item-link" href="{% url 'dashboard:manage_address' %}">{% endcomment %}
+                              <i class="mdi mdi-cash-multiple mr-2"></i>
+                                <span class="nav-text">Manage  Wallet Address</span>
+                              </a>
+                            </li>
+
+                            <li >
+                            {% comment %}  <a class="sidenav-item-link" href="{% url 'investments:all_deposits' %}">{% endcomment %}
+                              <i class="mdi mdi-cash-multiple mr-2"></i>
+                                <span class="nav-text">All Deposits</span>
+                              </a>
+                            </li>
+        
+                            <li >
+                            {% comment %}  <a class="sidenav-item-link" href="{% url 'investments:all_withdrawals' %}">{% endcomment %}
+                              <i class="mdi mdi-cash-refund mr-2"></i>
+                                <span class="nav-text">All Withdrawals</span>
+                              </a>
+                              <li >
+
+                              <li >
+                             {% comment %} <a class="sidenav-item-link" href="{% url 'dashboard:sub_upgrade_requests' %}">{% endcomment %}
+                              <i class="mdi mdi-cash-refund mr-2"></i>
+                                <span class="nav-text">subscription upgrade requests</span>
+                                
+                              </a>
+
+                              <li >
+                              {% comment %} <a class="sidenav-item-link" href="{% url 'investments:all_withdraw_request' %}">{% endcomment %}
+                              <i class="mdi mdi-cash-refund mr-2"></i>
+                                <span class="nav-text"> Withdrawal Requests</span>
+                              </a>
+                            </li>
+                        
+                            
+                      </div>
+                    </ul>
+                  </li>
+
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#posts"
+                      aria-expanded="false" aria-controls="users">
+                      <i class="mdi mdi-book"></i>
+                      <span class="nav-text">Manage Blog</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="posts"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+
+                           <li>
+                             <a class="sidenav-item-link" href="{% url 'blog:blog_posts' %}"> 
+                               <i class="mdi mdi-book-multiple mr-2"></i>
+                                <span class="nav-text">manage Posts</span>
+                                
+                              </a>
+                            </li>
+                        
+                          
+                            <li >
+                             <a class="sidenav-item-link" href="{% url 'blog:add_post' %}">
+                               <i class="mdi mdi-book-plus"></i>
+                                <span class="nav-text">Add Posts</span>
+                                
+                              </a>
+                            </li>
+                      </div>
+                    </ul>
+                  </li> 
+
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#tickets"
+                      aria-expanded="false" aria-controls="users">
+                      <i class="mdi mdi-ticket"></i>
+                      <span class="nav-text"> Manage Tickets </span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="tickets"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+
+                            <li >
+                              {% comment %}<a class="sidenav-item-link" href="{% url 'tickets:all_tickets' %}">{% endcomment %}
+                               <i class="mdi mdi-book-open mr-2"></i>
+                                <span class="nav-text">all tickets</span>
+                              </a>
+                            </li>
+                      </div>
+                    </ul>
+                  </li>
+
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#messages"
+                      aria-expanded="false" aria-controls="users">
+                      <i class="mdi mdi-email"></i>
+                      <span class="nav-text">Manage Messaging</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="messages"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+
+                            <li >
+                             {% comment %} <a class="sidenav-item-link" href="{% url 'dashboard:all_messages' %}">{% endcomment %}
+                               <i class="mdi mdi-email-open mr-2"></i>
+                                <span class="nav-text">All inquiry Messages</span>
+                              </a>
+                            </li>
+                            <li >
+                            {% comment %}  <a class="sidenav-item-link" href="{% url 'dashboard:send_messages' %}">{% endcomment %}
+                                <i class="mdi mdi-email-plus mr-2"></i>
+                                <span class="nav-text"> Mail Investors</span>
+                              </a>
+                            </li>
+							<li >
+                             {% comment %} <a class="sidenav-item-link" href="{% url 'dashboard:admin_sent_message' %}">{% endcomment %}
+                                <i class="mdi mdi-email-plus mr-2"></i>
+                                <span class="nav-text">Manage sent mails</span>
+                              </a>
+                            </li>
+                      </div>
+                    </ul>
+                  </li>
+                  <li>
+                    {% comment %}<a class="sidenav-item-link" href="{% url 'testimoney:all_testimoney' %}">{% endcomment %}
+                       <i class="mdi mdi-message-reply-text"></i>
+                      <span class="nav-text">Add Testimonials</span>
+                    </a>
+                  </li>
+            
+                   <li>
+                   {% comment %} <a class="sidenav-item-link" href="{% url 'authentication:social_form' %}">{% endcomment %}
+                       <i class="mdi mdi-cogs"></i>
+                      <span class="nav-text">social Links</span>
+                    </a>
+                  </li>
+                   <li>
+                    <a class="sidenav-item-link" href="{% url 'auth:signout' %}">
+                       <i class="mdi mdi-cogs"></i>
+                      <span class="nav-text">Logout</span>
+                    </a>
+                  </li>
+
+              </ul>
+
+            </div>
+
+            
+          </div>
+        </aside>

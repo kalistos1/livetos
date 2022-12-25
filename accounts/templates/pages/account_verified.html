@@ -1,0 +1,41 @@
+
+       {% extends 'auth_base.html' %}
+
+        {% load static %}
+
+        {% block content %}            
+		<div class="main">
+
+             <section class="signup">
+                <div class="container" style="padding:10%;">
+                    <div class="signup-content">
+						
+						<div class="card card-default mb-0">
+						  <div class="card-header pb-0">
+							<div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
+							  <a class="w-auto pl-0" href="{% url 'core:index' %}">
+								<img style="width:50px;" src="{% static 'images/onic1_logo.png' %}" alt="ONIC">
+								{% comment %} <span class="brand-name text-dark">ONIC</span> {% endcomment %}
+							  </a>
+							</div>
+						  </div>
+						  <div class="card-body px-5 pb-5 pt-0">
+						  
+						  <h2> Account Verification successful</h2>
+						   <hr width="30%" style="margin:auto;">
+							   <br>
+							 Dear <b>{{ user.first_name }}</b>,<br>
+							 Congratulations! your account has been verified
+							 <br>
+						  Welcome to Livetos Investments
+						   <p class="text-center">Already have an account?
+							  <a class=" btn btn-block text-blue" href="{% url 'auth:signin' %}">Sign in</a>
+							</p>
+						 
+						  </div>
+						</div>
+                    </div>
+			    </div>
+			</section>
+		</div>
+	{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+   <div class="content-wrapper">
+  <div class="content">
+<!-- Card with Deck -->
+<div class="row">
+ <div class="col-xl-4">
+ 
+<div class="card card-default">
+  <div class="card-header text-center">
+    <h2 class="text-center">Wallet Address</h2>
+    </div>
+  <div class="card-body">
+    
+
+    <div class="card-deck">
+    {% if wallet %}
+    {% for wallet in wallet %}
+      <div class="card">
+        <img class="card-img-top thumbnail mx-auto d-block" style="width:180px;" src="{{wallet.qr_image.url}}" alt="Card image cap">
+        <div class="card-body text-center">
+          <h5 class="card-title ">{{wallet.title}}</h5>
+          <p class="card-text pb-3">
+          {{wallet.address}}
+  
+          </p>
+          
+          <div >
+          <a class="btn btn-primary shadow" href="{% url 'dashboard:edit_address' wallet.id %}"> Edit</a>
+           <a class="btn btn-danger shadow" href="{% url 'dashboard:delete_address' wallet.id %}"> Delete</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+       {% endif %}
+  </div>
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+
+
+
+{% endblock %}
+
+

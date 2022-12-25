@@ -1,0 +1,61 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+<div class="content">
+
+
+<div class="card card-default">
+
+    {% include 'partials/_messages.html' %}
+  <div class="card-body">
+        <div class="row justify-content-center">
+	        
+		    <div class="col-xl-6 col-sm-6 col-6 ">
+			<h4>  Send Message to all <br> Investors in this Platform  </h4>
+			  <br>
+			  <br>
+				<form action="{% url 'dashboard:investors_send_message' %}" method="post">
+				
+				{%  if mailing_form %}
+			   <form action="" method="post">
+				  {% csrf_token %}
+				  
+				  {{mailing_form.as_p}}
+				  
+				  <div class="form-footer mt-6">
+					<button type="submit" class="btn btn-primary btn-block">Submit</button>
+					
+				  </div>
+				</form>
+			{% endif %}
+
+				</form>
+			</div>
+			<div class="col-xl-6 col-sm-6 col-6">
+			<h4>  Send Message to a Single <br> Investors in this Platform  </h4>
+			  <br>
+			  <br>
+			
+			{%  if user_mailing_form %}
+			   <form action="{% url 'dashboard:user_send_message' %}" method="post">
+				  {% csrf_token %}
+				  
+				  {{user_mailing_form.as_p}}
+				  
+				  <div class="form-footer mt-6">
+					<button type="submit" class="btn btn-primary btn-block">Submit</button>
+					
+				  </div>
+				</form>
+			{% endif %}
+			</div>
+		</div>
+
+
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

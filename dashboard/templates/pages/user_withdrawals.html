@@ -1,0 +1,64 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+<div class="content">
+
+
+<div class="card card-default">
+  <div class="card-header">
+    <h2>all Withrawal Request</h2>
+    {% if  withdrawal_requests %}
+     <h5>
+	   <a class="btn btn-primary mt-3" href ="{% url 'investments:send_withdraw_request' %}"> Make another withdrawal request</a> 
+	    <a class="btn btn-secondary mt-3" href ="{% url 'investments:send_refbonus_withdraw_request' %}"> withdrawal Referral Bonus</a> 
+	 </h5>
+    {% endif %}
+  </div>
+
+  <div class="card-body">
+
+<table id="productsTable" class="table table-hover table-product" style="width:100%">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Withdrawal ID</th>
+      <th>Amount</th>
+      <th>Date Created</th>
+      <th>Status</th>
+ 
+    </tr>
+  </thead>
+  <tbody>
+  {% if user and withdrawal_requests %}
+   {% for withdrawal_request  in withdrawal_requests %}
+    <tr>
+      <td class="py-0">
+        <img src="{{user.profile.image.url}}" alt="Product Image">
+      </td>
+      <td>{{withdrawal_request.transaction_id}}</td>
+      <td>{{withdrawal_request.amount}}</td>
+      <td>{{withdrawal_request.date_added}}</td>
+      <td>{{withdrawal_request.status}}</td>
+      
+    </tr>
+    {% endfor %}
+
+    {% else %}
+      <h5 class="mb-3 mt-3 text-danger"> 
+	    <span class="mr-4">You have not made any withdrawal request  </span>   
+		<a class="btn btn-primary " href ="{% url 'investments:send_withdraw_request' %}"> Make a withdrawal request Now</a> 
+	    <a class="btn btn-secondary " href ="{% url 'investments:send_refbonus_withdraw_request' %}"> withdrawal Referral Bonus</a> 
+	  </h5> 
+   
+    {% endif %}
+
+
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}

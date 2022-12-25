@@ -1,0 +1,311 @@
+        {% extends 'dashboard_base.html' %}
+        {% load static %}
+        {% block content %}
+
+        <!-- ====================================
+        ——— CONTENT WRAPPER
+        ===================================== -->
+        <div class="content-wrapper">
+          <div class="content">                
+                  <!-- Top Statistics -->
+                  
+                <div class="row">
+                  <div class="col-xl-4">
+                    <!-- Top Customers -->
+                    <div class="card card-default">
+                      <div class="card-header">
+                        <h2>
+						User Info 
+						   
+						</h2>
+                      </div>
+                      <div class="card-body">
+                        <table class="table table-borderless table-thead-border">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th class="text-right"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="text-dark font-weight-bold">User Name</td>
+                              <td class="text-right">{{user.username}}</td>
+                            </tr>
+                            <tr>
+                              <td class="text-dark font-weight-bold">Full Name</td>
+                              <td class="text-right">{{user.first_name}} {{user.last_name}}</td>
+                            </tr>
+                            <tr>
+                              <td class="text-dark font-weight-bold">Email Address</td>
+                              <td class="text-right">{{user.email}}</td>
+                            </tr>
+                            <tr>
+                              <td class="text-dark font-weight-bold">Phone</td>
+                              <td class="text-right">{{user.profile.phone}}</td>
+                            </tr>
+                            <tr>
+                              <td class="text-dark font-weight-bold">Wallet Address</td>
+                              <td class="">{{user.profile.crypto_address}}</td>
+                            </tr>
+                           
+						   <tr>
+                              <td class="text-dark font-weight-bold">Action</td>
+                              <td>
+                              
+                                  <a href="#"  data-toggle="modal" data-target="#exampleModalTooltip"> <span class="btn btn-danger btn-sm ">Delete This Investor </span></a> 
+										   
+								  <!-- Delete Modal -->
+								<div class="modal fade" id="exampleModalTooltip" tabindex="-1" role="dialog" aria-labelledby="exampleModalTooltip"
+								  aria-hidden="true">
+								  <div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+									  <div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle2">Delete Investor {{user.username}} {% if user.is_admin %} <span class="text-danger"> THIS USER IS AN ADMIN</span> {% endif %}</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										  <span aria-hidden="true">×</span>
+										</button>
+									  </div>
+									  <div class="modal-body">
+										<h5>Are You Sure you want to Delete The Investor with the username <span class="text-danger">[ {{user.username}} ]</span></h5>
+									   
+									  </div>
+									  <div class="modal-footer">
+										<a href="{% url 'dashboard:delete_user' user.id %}" class="btn btn-danger btn-block" style="color:white; text-decoration:none;">
+										Continue to Delete</a>
+									 
+									  </div>
+									</div>
+								  </div>
+								</div>
+
+						   <!-- DELETE MODAL ENDS -->
+                              </td>
+                              
+                            </tr> 
+                          </tbody>
+                          
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-xl-8">
+                     <!-- Sales by Product -->
+                    <div class="card card-default">
+                      <div class="card-header align-items-center">
+                        <h2 class="">Investment Summary of the user <span class="text-danger">< {{user.username }}> </span><h2>
+                       
+                      </div>
+                      <div class="card-body">
+                        <div class="tab-content">
+                          <table id="product-sale" class="table table-product " style="width:100%">
+                            <thead>
+                              <tr>
+                                <th class="small">Plan</th>
+								<th class="small">Profit</th>
+                                <th class="small">Interest</th>
+                                <th class="small">Ref </th>
+								<th class="small">Ref Bonus</th>
+                                
+                                
+                                <th class="th-width-25"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr>
+                                <td>{{sub_type}}</td>
+								<td>${{transaction_rec.total_balance}}</td>
+                                <td>${{sub_type_interest }}</td>
+                                <td>{{total_referals}}</td>
+								<td>${{transaction_rec.total_referal_balance}}</td>
+								
+                              
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    
+                     <div class="card card-default">
+                      <div class="card-header align-items-center">
+                        <h2 class="">List of refferals  <h2> 
+                      </div>
+                      <div class="card-body">
+                        <div class="tab-content">
+                        <table id="product-sale" class="table table-product " style="width:100%">
+                            <thead>
+                              <tr>
+                                <th>Username</th>
+                                <th>Subscription Type</th>
+								
+                                <th class="th-width-25"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                             {% if list_of_referals %}
+                               {% for referal in list_of_referals%}
+                              <tr>
+                                <td>{{referal.user.username}}</td>
+                                    {% if referal.user.membership.membership %}
+                                <td>{{referal.user.membership.membership }}</td>
+                                    {% else %}
+                                <td>Not subscribed to any plan</td>
+                                     {% endif %}
+                               
+                              </tr>
+                              {% endfor %}
+                              {% endif %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+                
+
+                  <div class="row">
+
+                    <div class="col-xl-4 col-sm-6">
+                      <div class="card card-default card-mini">
+                        <div class="card-header">
+                          <h2>Investment Plan</h2>
+                          <div class="dropdown">
+                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                          </div>
+
+                          <div class="sub-title">
+                            <span class="mr-1">Subscribe User to a New Investment Plan</span> |
+                            <i class="mdi mdi-arrow-up-bold text-success"></i>
+                          </div>
+                        </div>
+
+                        <div class="card-body mt-5">
+                          <div class="chart-wrapper">
+                             <a href="{% url 'dashboard:subscribe_user' user.id %}" class="btn btn-outline-primary btn-block">subscribe </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                      <div class="card card-default card-mini">
+                        <div class="card-header">
+                          <h2>Update interest</h2>
+                          <div class="dropdown">
+                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                          </div>
+
+                          <div class="sub-title">
+                            <span class="mr-1">Click to Update user weekly investment Interest</span> |
+                            <i class="mdi mdi-arrow-up-bold text-success"></i>
+                          </div>
+                        </div>
+
+                        <div class="card-body mt-5">
+                          <div class="chart-wrapper">
+                             <a href="{% url 'dashboard:increase_interest' user.id %}" class="btn btn-outline-dark btn-block">increment </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                   <div class="col-xl-4 col-sm-6">
+                      <div class="card card-default card-mini">
+                        <div class="card-header">
+                          <h2>Approve withdrawal</h2>
+                          <div class="dropdown">
+                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                          </div>
+
+                          <div class="sub-title">
+                            <span class="mr-1"> Click to Approve/deduct withdrawal request/amount</span> |
+                           
+                            <i class="mdi mdi-arrow-up-bold text-success"></i>
+                          </div>
+                        </div>
+
+                        <div class="card-body mt-5">
+                          <div class="chart-wrapper">
+                            <a href="{% url 'investments:all_withdraw_request' %}" class="btn btn-outline-danger btn-block">Approve withdrawal </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					
+					<div class="col-xl-4 col-sm-6">
+                      <div class="card card-default card-mini">
+                        <div class="card-header">
+                          <h2>Edit Profit/Bonus</h2>
+                          <div class="dropdown">
+                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                          </div>
+
+                          <div class="sub-title">
+                            <span class="mr-1"> Click to Edit User profit and referal bonus</span> |
+                           
+                            <i class="mdi mdi-arrow-up-bold text-success"></i>
+                          </div>
+                        </div>
+
+                        <div class="card-body mt-5">
+                          <div class="chart-wrapper">
+                            <a href="{% url 'dashboard:edit_user_profit' transaction_rec.id %}" class="btn btn-outline-danger btn-block">Edit </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					
+					
+
+                  </div>
+
+
+              <!-- Form Modal -->
+            <div class="modal fade" id="exampleModalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalFormTitle">Update User  Investment Plan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 <div class="row justify-content-center">
+                    <div class="col-md-10">
+                      <form method="post">
+                       {% csrf_token %}
+                         
+                            {{form.as_p}}
+                        <div class="mt-4">
+                          <button class="btn btn-block  btn-info" type="submit"> Update </button>
+                        <div>
+                       </form>
+                    </div>
+                  </div>
+
+
+                </div>
+                
+                </div>
+            </div>
+            </div>
+            </div>
+          
+        </div>
+     
+         {% endblock %}
+                    

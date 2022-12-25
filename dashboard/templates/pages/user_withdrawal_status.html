@@ -1,0 +1,61 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+<div class="content">
+
+
+<div class="card card-default">
+  <div class="card-header">
+    <h2>Withrawal Request Status</h2>
+  </div>
+  <div class="card-body">
+
+<table id="productsTable" class="table table-hover table-product" style="width:100%">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Withdrawal ID</th>
+      <th>Amount</th>
+      <th>Date Created</th>
+      <th>Status</th>
+ 
+    </tr>
+  </thead>
+  <tbody>
+  {% if user and withdrawal_status %}
+    {% for status in withdrawal_status %}
+    <tr>
+      <td class="py-0">
+        <img src="{{user.profile.image.url}}" alt="Product Image">
+      </td>
+      <td>{{status.withdrawal_id}}</td>
+      <td>{{status.amount}}</td>
+      <td>{{status.date_created}}</td>
+      <td>
+         {% if  status.status == "PENDING" %}
+        <button class="btn btn-warning"> {{status.status}} </button>
+
+        {% elif withdrawal_status.status == "DECLINED" %}
+          <button class="btn btn-danger"> {{status.status}} </button>
+        {% else %}
+
+          <button class="btn btn-success"> {{status.status}} </button>
+        {% endif %}
+      </td>
+     
+    </tr>
+     {% endfor %}
+    {% else %}
+      <h5 class="mb-3 mt-3 text-danger"> You Have No Availabe Withdrawal Request Status </h5>
+    {% endif %}
+
+
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+{% endblock %}

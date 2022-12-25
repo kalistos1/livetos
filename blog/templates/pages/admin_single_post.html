@@ -1,0 +1,47 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+   <div class="content-wrapper">
+  <div class="content">
+<!-- Card with Deck -->
+<div class="card card-default">
+  <div class="card-header">
+    <h2>Manage All Blog Posts</h2>
+    </div>
+  <div class="card-body">
+    
+
+    <div class="card-deck">
+    
+    {% if post %}
+      <div class="card">
+        <img class="card-img-top thumbnail"  src="{{post.image.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title ">{{post.title}}</h5>
+          <p class="card-text pb-3">
+         
+          {{post.body}}
+          </p>
+          
+          <div >
+          <button type="button" class="mb-1 btn btn-pill btn-success shadow">Preview</button>
+          <a class="btn btn-info btn-pill shadow" href="{% url 'blog:edit_post' post.slug %}"> Edit</a>
+           <a class="btn btn-danger btn-pill shadow" href="{% url 'blog:delete_post' post.slug %}"> Delete</a>
+          </div>
+        </div>
+      </div>
+      
+       {% endif %}
+
+      
+
+  </div>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+

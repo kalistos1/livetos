@@ -1,0 +1,55 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content-wrapper">
+<div class="content">
+
+
+<div class="card card-default">
+  <div class="card-header">
+    <h2> Investor Withdrawal Request</h2>
+  </div>
+  <div class="card-body">
+
+<div class="row">
+  <div class="col-md-12">
+  {% include 'partials/_messages.html' %}
+  </div>
+                        
+{% if sub_requests %}
+{% for request  in sub_requests %}
+ 
+  <div class="col-lg-6 col-xl-3">
+
+    <div class="card text-white bg-primary mb-3">
+      <p class="card-header text-center text-white">user: {{request.user.username}}. <br>email address: {{request.user.email}}</p>
+      <div class="card-body">
+        <p class="card-text text-center pb-3">Requests to subscribe for <br> <span> {{request.investment_plan}} Plan</span></p> 
+        <p class="text-light text-center"> [verify his payment before approving and upgrading his plan]</p>  
+        {% if request.status == "PENDING"%}   
+         <a href="{% url 'dashboard:view_user' request.user.id %}" class="btn btn-block btn-light">Approve</a>
+         {% else %}
+          <a href="#" class="btn btn-block btn-light disabled ">processed</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+  {% else %}
+   <h4> No Subscription request </h4>
+  {% endif %}
+
+    
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+
+

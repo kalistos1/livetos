@@ -1,0 +1,72 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+<div class="content">
+
+{% include 'partials/_messages.html' %}
+<div class="card card-default">
+  <div class="card-header">
+    <h2>All Investors/Users</h2>
+  </div>
+  <div class="card-body">
+
+<table id="productsTable" class="table table-bordered table-hover table-product" style="width:100%">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Username</th>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Active plan</th>
+      <th>referals</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for user in all_users%}
+    <tr>
+      <td class="py-0">
+        <img src="{{user.profile.photo.url}}" alt="profile Image">
+      </td>
+      <td>{{user.username}}</td>
+      <td>{{user.first_name}} {{user.last_name}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        {{user.phone}}
+      </td>
+      <td>{{user.membership.membership }}</td>
+      <td> </td>
+      <td>
+        <div class="dropdown">
+          <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right justify-content-center" aria-labelledby="dropdownMenuLink">
+			<button type="button" class="dropdown-item ">
+				<a class="btn btn-info btn-sm"  href="{% url 'dashboard:view_user' user.id %}">View User </a>
+			</button>
+
+          </div>
+		 
+        </div>
+		
+      </td>
+    </tr>
+	
+	
+	
+  {% endfor %}
+    
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+
+{% endblock %}

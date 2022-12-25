@@ -1,0 +1,41 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+{% block content %}
+   <div class="content-wrapper">
+  <div class="content">
+<!-- Card with Deck -->
+<div class="card card-default">
+  <div class="card-header">
+    <h2>Read Message from {{get_message.name}} ({{get_message.email}})</h2>
+    </div>
+  <div class="card-body">
+    
+
+    <div class="card-deck">
+    
+    {% if get_message %}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title ">{{get_message.subject}} </h5>
+		
+          <p class="card-text pb-3">
+         
+          {{get_message.body}}
+          </p>
+          
+        </div>
+      </div>
+      
+       {% endif %}
+
+     
+  </div>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+
