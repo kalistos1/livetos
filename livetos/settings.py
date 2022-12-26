@@ -137,19 +137,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 #if DEBUG:
-#STATICFILES_DIRS = [
-#        os.path.join (BASE_DIR ,'livetos/static/')
- #   ]
-#else:
-#STATIC_ROOT = os.path.join(BASE_DIR,'static/')
-
 STATICFILES_DIRS = [
-    BASE_DIR/ "static", "./static/",
-]
+        os.path.join (BASE_DIR ,'livetos/static/')
+    ]
+#else:
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
+
 
 STATIC_URL = '/static/'
-
-
 
 LOGIN_REDIRECT_URL = 'dashboard:profile'
 LOGIN_URL = 'auth:signin'
